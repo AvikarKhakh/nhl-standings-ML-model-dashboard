@@ -26,6 +26,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Optional: if your data/models are large, consider ignoring them:
-# data/
-# models/

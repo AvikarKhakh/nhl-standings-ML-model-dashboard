@@ -12,8 +12,6 @@ This repository contains a machine learning project designed to predict NHL team
 - [Running the Frontend](#running-the-frontend)
 - [Connecting Backend to Dashboard](#connecting-backend-to-dashboard)
 - [Main Run File](#main-run-file)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 

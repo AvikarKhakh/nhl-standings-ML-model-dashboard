@@ -93,7 +93,7 @@
   align-items: start;
 }
 
-/* ✅ NEW: stacks the left side cards */
+/* stacks the left side cards */
 .leftStack {
   display: grid;
   gap: 12px;
@@ -168,7 +168,6 @@ th {
   margin-top: 12px;
 }
 
-/* ---- bracket styles (keep your existing themed ones) ---- */
 .bracketGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;

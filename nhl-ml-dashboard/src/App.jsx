@@ -205,7 +205,6 @@ export default function App() {
     setMetrics(null);
   };
 
-  // ✅ Tier buckets (based on sorted standings)
   const { top5, playoffRest, hunt, rebuild } = useMemo(() => {
     const s = standings.slice(); // already ranked by backend
     const top5 = s.slice(0, 5);

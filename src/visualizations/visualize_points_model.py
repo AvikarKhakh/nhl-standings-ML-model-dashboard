@@ -71,7 +71,7 @@ def load_model():
 
 def plot_scatter(test_df, y_test, y_pred):
     """Scatter plot: actual vs predicted points for the test season."""
-    teams = test_df["team"].values  # short codes like NYR, BOS, etc.
+    teams = test_df["team"].values 
 
     plt.figure(figsize=(10, 10))
     plt.scatter(y_test, y_pred, s=60)

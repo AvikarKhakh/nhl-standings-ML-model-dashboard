@@ -49,7 +49,6 @@ def main():
     print(f"Reading master dataset from: {MASTER_PATH}")
     master = pd.read_csv(MASTER_PATH)
 
-    # --- Normalize master team codes ---
     if "team" not in master.columns or "season" not in master.columns:
         raise ValueError(
             f"master_team_dataset.csv must contain 'team' and 'season' columns. "
@@ -63,7 +62,6 @@ def main():
     print("Unique team codes in master (after normalization):")
     print(unique_codes)
 
-    # --- Read standings ---
     print(f"Reading standings from: {STANDINGS_PATH}")
     standings = pd.read_csv(STANDINGS_PATH)
 
@@ -88,7 +86,6 @@ def main():
     standings["season"] = standings["season_num"].astype(int)
     standings = standings.drop(columns=["season_num"])
 
-    # ✅ FIXED: use .str.upper(), not .upper()
     standings["nhl_tricode"] = (
         standings["nhl_tricode"].astype(str).str.strip().str.upper()
     )

@@ -51,7 +51,6 @@ def load_team_season(path: Path) -> pd.DataFrame:
         seconds = seconds.astype(float).replace(0, np.nan)
         return series * 3600.0 / seconds
 
-    # ----- ALL SITUATIONS -----
     all_df = df[df["situation"] == "all"].copy()
     if all_df.empty:
         raise ValueError(f"No 'all' situation rows in {path.name}")
@@ -104,7 +103,6 @@ def load_team_season(path: Path) -> pd.DataFrame:
         np.nan,
     )
 
-    # ----- EVEN-STRENGTH (5on5) -----
     ev_df = df[df["situation"] == "5on5"].copy()
     if not ev_df.empty:
         sec_ev = ev_df["iceTime"].astype(float).replace(0, np.nan)
@@ -119,7 +117,6 @@ def load_team_season(path: Path) -> pd.DataFrame:
         out["ev_xgf60"] = np.nan
         out["ev_xga60"] = np.nan
 
-    # ----- POWER PLAY (5on4) -----
     pp_df = df[df["situation"] == "5on4"].copy()
     if not pp_df.empty:
         sec_pp = pp_df["iceTime"].astype(float).replace(0, np.nan)
@@ -133,7 +130,6 @@ def load_team_season(path: Path) -> pd.DataFrame:
         out["pp_xgf60"] = np.nan
         out["pp_xga60"] = np.nan
 
-    # ----- PENALTY KILL (4on5) -----
     pk_df = df[df["situation"] == "4on5"].copy()
     if not pk_df.empty:
         sec_pk = pk_df["iceTime"].astype(float).replace(0, np.nan)

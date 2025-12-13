@@ -1,5 +1,3 @@
-# src/visualization_correlations.py
-
 from pathlib import Path
 
 import pandas as pd
@@ -59,7 +57,6 @@ def main():
 
     corr = df_train[feature_cols].corr(method="pearson")
 
-    # -------- Plot heatmap --------
     plt.figure(figsize=(12, 10))
     sns.heatmap(
         corr,

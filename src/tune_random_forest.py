@@ -8,7 +8,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 DATA_PATH = "data/master_team_with_points.csv"
 MODEL_PATH = "models/points_rf.pkl"
 
-# Features you want to use
+# Features we want to use
 FEATURE_COLS = [
     "xgf60","xga60","ev_xgf60","ev_xga60","pp_xgf60","pp_xga60",
     "pk_xgf60","pk_xga60","hdf","hda","hdf_percent","xgoals_percentage",
@@ -39,7 +39,6 @@ def main():
     print("Training size:", len(X_train))
     print("Testing size:", len(X_test))
 
-    # Time-aware splits
     tscv = TimeSeriesSplit(n_splits=5)
 
     # Hyperparameter grid
@@ -75,7 +74,7 @@ def main():
     y_pred = best_model.predict(X_test)
     test_r2 = r2_score(y_test, y_pred)
 
-    # Fix for older sklearn versions (no 'squared' argument)
+    # Fix for older sklearn versions that don't have squared=False
     test_mse = mean_squared_error(y_test, y_pred)
     test_rmse = np.sqrt(test_mse)
 

@@ -1,5 +1,3 @@
-# src/visualize_trends.py
-
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -27,7 +25,6 @@ def main():
         "save_percent",
     ]
 
-    # Sanity check: make sure all features exist
     missing = [f for f in core_features if f not in df.columns]
     if missing:
         raise ValueError(f"Missing expected features in dataset: {missing}")
@@ -44,7 +41,6 @@ def main():
 
     print("Seasons in dataset:", seasons)
 
-    # COVID-shortened seasons (2019–20 and 2020–21),
     # which correspond to seasons labeled 2020 and 2021 in our data.
     covid_seasons = [2020, 2021]
 

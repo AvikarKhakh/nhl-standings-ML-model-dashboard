@@ -5,10 +5,9 @@ import numpy as np
 import pandas as pd
 
 MODEL_PATH = Path("models/points_rf.pkl")
-INPUT_PATH = Path("data/master_team_2025_features.csv")   # <-- you create this
+INPUT_PATH = Path("data/master_team_2025_features.csv")   
 OUTPUT_PATH = Path("reports/predicted_points_2026.csv")
 
-# Must match training-time feature set EXACTLY (names + order)
 FEATURE_COLS = [
     "xgf60",
     "xga60",
@@ -50,7 +49,6 @@ def main():
     if missing:
         raise ValueError(f"Input file is missing required feature columns: {missing}")
 
-    # Keep identifiers if you have them (team/nhl_tricode), but don't feed into model
     id_cols = [c for c in ["team", "nhl_tricode"] if c in df.columns]
     X = df[FEATURE_COLS].values.astype(float)
 
@@ -59,7 +57,6 @@ def main():
     out = df[id_cols].copy() if id_cols else pd.DataFrame()
     out["predicted_points_2026"] = preds
 
-    # Optional: sort high to low
     out = out.sort_values("predicted_points_2026", ascending=False)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

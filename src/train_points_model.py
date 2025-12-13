@@ -17,7 +17,6 @@ REPORTS_DIR = Path("reports")
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 METRICS_PATH = REPORTS_DIR / "metrics_points.json"
 
-# Adjust these if you ever want to change train/test split
 TRAIN_SEASONS = list(range(2013, 2024))  # 2013–2023
 TEST_SEASON = 2024                       # Held-out season
 
@@ -35,12 +34,6 @@ def main():
     # Make sure season is int
     df["season"] = df["season"].astype(int)
 
-    # === Define feature columns ===
-    # Use advanced stat columns ONLY.
-    # Exclude:
-    #   - season, team, nhl_tricode (identifiers)
-    #   - points (target)
-    #   - wins, losses, ot  <-- REMOVE LEAKAGE
     exclude_cols = {
         "season",
         "team",
@@ -119,7 +112,6 @@ def main():
 
     print(f"\nSaved metrics JSON to: {METRICS_PATH}")
 
-    # Save JUST the sklearn model
     with open(MODEL_PATH, "wb") as f:
         pickle.dump(model, f)
 

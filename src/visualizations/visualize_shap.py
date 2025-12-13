@@ -7,9 +7,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# If SHAP isn't installed yet:
-# pip install shap
 import shap
 
 
@@ -44,7 +41,7 @@ def prettify_axes(ax, xlabel, ylabel):
     ax.set_xlabel(xlabel, fontsize=12)
     ax.set_ylabel(ylabel, fontsize=12)
     ax.grid(True, alpha=0.25)
-    ax.axhline(0, linestyle="--", linewidth=1)  # baseline SHAP=0
+    ax.axhline(0, linestyle="--", linewidth=1)  
     ax.tick_params(axis="both", labelsize=10)
 
 
@@ -58,7 +55,6 @@ def main():
 
     feature_cols = get_feature_cols(df_train)
 
-    # Sanity: ensure requested features exist
     missing_feats = [f for f in FEATURES_TO_PLOT if f not in feature_cols]
     if missing_feats:
         raise ValueError(f"Missing required features in dataset/model features: {missing_feats}")
@@ -67,8 +63,6 @@ def main():
     print(f"Loading model: {MODEL_PATH}")
     model = load_model(MODEL_PATH)
 
-    # Subsample for speed + cleaner plot (optional)
-    # If you want full: comment this out
     if len(X) > 350:
         X_plot = X.sample(n=350, random_state=42)
     else:
@@ -82,10 +76,8 @@ def main():
     # shap_values is (n_samples, n_features) for regression
     shap_matrix = np.array(shap_values)
 
-    # Map feature -> shap column index
     feat_to_idx = {feat: i for i, feat in enumerate(feature_cols)}
 
-    # ---------- Plot dashboard ----------
     plt.figure(figsize=(14, 10))
     plt.suptitle(
         "SHAP Dependence Dashboard — Key Drivers of Predicted NHL Points\n"

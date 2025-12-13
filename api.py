@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Allow your React frontend (Vite) to call this API
+# Allow React frontend (Vite) to call this API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -131,7 +131,6 @@ def _detect_team_points_cols(df: pd.DataFrame) -> tuple[str, str]:
             points_col = c
             break
     if points_col is None:
-        # fallback: something like "Predicted Points" or "points_pred" or "points"
         for c in cols:
             lc = c.lower()
             if ("point" in lc and "pred" in lc) or lc == "points":
